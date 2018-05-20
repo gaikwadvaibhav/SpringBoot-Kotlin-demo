@@ -25,12 +25,10 @@ class UserController(
         private val userRepo: UserRepo,
         private val userService: UserService
 ) {
-
     companion object {
         private val map = HashMap<String, Any>()
         private val log = LoggerFactory.getLogger(UserController::class.java)
     }
-
     @PostMapping("/register")
     fun registerUser(@RequestBody user: User): Mono<ResponseEntity<*>> {
 
@@ -64,8 +62,6 @@ class UserController(
                          @RequestParam multipartFile: MultipartFile
     ): Mono<ResponseEntity<*>> {
         map.clear()
-//       val map = HashMap()
-
         userService.uploadProfilePicture(userId, multipartFile)
 
         map[STATUS] = SUCCESS
